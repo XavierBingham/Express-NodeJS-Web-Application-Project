@@ -1,0 +1,105 @@
+main {
+    justify-content: center;
+    align-items: center;
+}
+
+#content-container {
+    width: 80%;
+    min-width: 400px;
+    max-width: 800px;
+    height: auto;
+    background-color: var(--primary-color);
+    flex-direction: column;
+    color: white;
+    border-radius: 15px;
+    padding: 30px;
+    padding-bottom: 50px;
+    border-left: solid 2em var(--secondary-color);
+    border-right: solid 2em var(--secondary-color);
+    justify-content: center;
+    align-items: center;
+}
+
+#content-container > * {
+    margin-bottom: 10px;
+}
+
+#content-container > h2 {
+    display: block;
+    margin-bottom: 20px;
+    font-size: xx-large;
+}
+
+#content-container > p {
+    display: block;
+    font-size: large;
+    margin-left: 3vw;
+    text-indent: -1vw;
+    line-height: 20px;
+}
+
+form {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form > div {
+    width: 70%;
+    margin-bottom: 10px;
+    height: 72px;
+}
+
+label {
+    display: block;
+    width: 6%;
+    padding-right: 10px;
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: larger;
+}
+
+input, select {
+    display: block;
+    width: 100%;
+    height: 40px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+    color: black;
+}
+
+form > div[class="flex-container"] {
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 50px;
+}
+
+form > .content-divider {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    width: 75%;
+}
+
+input[type="submit"] {
+    background-color: rgb(75, 133, 75);
+    color: white;
+    width: 100%;
+    height: 100%;
+    font-size: larger;
+    border-radius: 10px;
+    transition: border .1s ease, background-color .1s ease;
+}
+
+label {
+    width: 100%;
+}
+
+input[type="submit"]:hover, input[type="submit"]:focus {
+    border-left: solid 1em var(--secondary-color);
+    border-right: solid 1em var(--secondary-color);
+    background-color: rgb(93, 153, 93);
+}

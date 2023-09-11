@@ -1,0 +1,239 @@
+/* General Page Layout */
+
+:root {
+    --primary-color: rgb(56, 54, 54);
+    --secondary-color: rgb(44, 43, 43);
+    --font-theme: Arial, Helvetica, sans-serif;
+}
+
+* {
+    margin: 0;
+    font-family: var(--font-theme);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    padding: 5%;
+}
+
+.content-divider {
+    background-color: white;
+    width: 100%;
+    height: 2px;
+    border-radius: 20px;
+}
+
+.flex-container {
+    display: flex;
+}
+
+a, button, input[type="submit"] {
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+img, a {
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+.row-nav {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.row-nav a {
+    color: white;
+    width: fit-content;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 30px;
+    line-height: 30px;
+    margin: 6px;
+    font-size: large;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+@keyframes nav-hover {
+    0% {width: 0%; background-color: transparent;}
+    100% {width: 100%; background-color: white;}
+}
+
+@keyframes nav-hover-end {
+    0% {width: 100%; background-color: white;}
+    100% {width: 0%; background-color: transparent;}
+}
+
+.row-nav a::after {
+    content: "";
+    width: 0%;
+    height: 2px;
+    background-color: transparent;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 0;
+}
+
+.row-nav .animated::after {
+    animation-name: nav-hover-end;
+    animation-duration: .25s;
+    animation-fill-mode: forwards;
+}
+
+.row-nav .animated:hover::after {
+    animation-name: nav-hover;
+    animation-duration: .25s;
+    animation-fill-mode: forwards;
+}
+
+.nav-breaker {
+    background-color: rgba(255, 255, 255, 0.603);
+    width: 2px;
+    height: 20px;
+    border-radius: 10px;
+}
+
+.row-socials-nav {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.row-socials-nav a {
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    transition: transform .1s linear;
+    filter: grayscale(1) invert(1);
+}
+
+.row-socials-nav a:hover {
+    transform: scale(1.1);
+}
+
+.row-socials-nav img {
+    width: 100%;
+    height: 100%;
+}
+
+/* Header */
+
+header {
+    width: 100%;
+    height: 160px;
+    background-color: var(--primary-color);
+    display: block;
+    border-bottom: solid var(--secondary-color) 4px;
+}
+
+#header-container {
+    width: auto;
+    height: 100%;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+
+#header-top-container, #header-bottom-container {
+    width: 100%;
+    flex-direction: row;
+    margin-bottom: 10px;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+#header-logo {
+    border-radius: 10px;
+    width: 160px;
+    margin-left: 30px;
+}
+
+.flash {
+    border-radius: 2px;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    width: 60%;
+    height: 50px;
+    margin: 10px;
+    color: white;
+    font-size: 12pt;
+}
+
+.flash-success {
+    background-color: rgba(34, 112, 34, 0.788);
+}
+
+.flash-error {
+    background-color: rgba(197, 35, 35, 0.788);
+}
+
+/* Main */
+
+main {
+    flex-grow: 1;
+}
+
+/* Footer */
+
+footer {
+    width: 100%;
+    height: 60px;
+    background-color: var(--primary-color);
+    display: block;
+    border-top: solid var(--secondary-color) 4px;
+}
+
+#footer-container {
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#footer-left-container {
+    width: 50%;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 20px;
+}
+
+#copyright {
+    color: white;
+}
+
+#footer-left-container > .nav-breaker {
+    margin-left: 15px;
+    height: 35px;
+    background-color: white;
+}
+
+footer .row-nav {
+    width: 250px;
+}
+
+#footer-right-container {
+    width: 50%;
+    margin-right: 20px;
+    justify-content: flex-end;
+}
+
+footer .row-socials-nav {
+    width: 100px;
+}

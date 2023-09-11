@@ -1,0 +1,133 @@
+main {
+    flex-direction: column;
+    align-items: center;
+}
+
+.hide {
+    display: none;
+}
+
+/* Event Navigation */
+
+#event-navigation {
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+#event-navigation > button {
+    width: 140px;
+    height: 50px;
+    margin: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: large;
+    border-radius: 10px;
+    border: none;
+    border-left: solid .5em var(--secondary-color);
+    transition: background-color .1s linear;
+}
+
+#event-navigation > button:focus {
+    background-color: rgba(56, 54, 54, 0.87);
+}
+
+#event-navigation > button:hover {
+    background-color: rgba(56, 54, 54, 0.87);
+}
+
+#event-navigation img {
+    width: 30px;
+    filter: grayscale(1) invert(1);
+    margin-right: 10%;
+}
+
+main > .content-divider {
+    background-color: var(--secondary-color);
+    margin-bottom: 30px;
+    width: 65%;
+    min-width: 450px;
+    max-width: 2000px;
+}
+
+/* Event Containers */
+
+.events-container {
+    width: 50%;
+    min-width: 350px;
+    max-width: 2000px;
+    color: white;
+    align-items: center;
+    flex-direction: column;
+}
+
+@keyframes container-show {
+    0% {opacity: .75;}
+    100% {opacity: 1;}
+}
+
+.events-container:not(.hide) {
+    animation-name: container-show;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease;
+}
+
+.event-list-item {
+    margin-bottom: 15px;
+    width: 100%;
+    background-color: var(--primary-color);
+    border-left: solid 2em var(--secondary-color);
+    border-right: solid 2em var(--secondary-color);
+    border-radius: 10px;
+    padding: 20px;
+    transition: background-color .1s linear, border .1s linear;
+}
+
+.event-list-item:focus {
+    background-color: rgba(56, 54, 54, 0.87);
+}
+
+.event-list-item:hover {
+    background-color: rgba(56, 54, 54, 0.87);
+    border-left: solid 2.5em var(--secondary-color);
+    border-right: solid 2.5em var(--secondary-color);
+}
+
+.event-list-item > div {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.event-list-item img {
+    filter: grayscale(1) invert(1);
+    width: 40px;
+}
+
+.list-left-content {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2vw;
+}
+
+.list-left-content > h3 {
+    padding-left: .5vw;
+    padding-right: .5vw;
+}
+
+.list-left-content > .nav-breaker {
+    height: 40px;
+}
+
+.list-right-content > p {
+    font-size: larger;
+}
+
+#no-events-label {
+    color: var(--primary-color);
+}
