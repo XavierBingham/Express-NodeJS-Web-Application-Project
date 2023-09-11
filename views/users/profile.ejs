@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <!--Site Headings-->
+    <head>
+
+        <meta charset="utf-8">
+        <title>Music Events - Events</title>
+        
+        <!--CSS Files-->
+        <link rel="stylesheet" type="text/css" href="/CSS/sharedStyles.css">
+        <link rel="stylesheet" type="text/css" href="/CSS/profile.css">
+
+        <!--JS Files-->
+        <script src="/JS/events.js"></script>
+
+    </head>
+
+    <!--Site Content-->
+    <body class="no-animations">
+
+        <%- include('../partials/header.ejs') %>
+
+        <!--Main Content-->
+        <main class="flex-container">
+
+            <div class="content-container flex-container">
+                <h2>My Events</h2>
+                <div class="content-header flex-container">
+                    <h3>Title</h3>
+                    <h3>Actions</h3>
+                </div>
+                <div class="content-divider"></div>
+                <% const EventsExist = typeof(Events) === "object" %>
+                <% if(!EventsExist || Events.length <= 0){ %>
+                    <p>There are no events to display</p>
+                <% }else{ %>
+                    <div class="event-list flex-container">
+                        <% Events.forEach(Event => { %>
+                            <div class="event-list-item flex-container">
+                                <p><a href="/events/<%= Event._id %>"><%= Event.title %></a></p>
+                                <div class="action-list flex-container">
+                                    <p class="nav-breaker"></p>
+                                    <form class="flex-container">
+                                        <button id="edit" class="flex-container" formmethod="GET" formaction="/events/<%= Event._id %>/edit"><img src="/SiteImages/edit.png" alt="Edit Event Button."></button>
+                                        <button id="delete" class="flex-container" formmethod="POST" formaction="/events/<%= Event._id %>/?_method=DELETE"><img src="/SiteImages/delete.png" alt="Delete Event Button."></button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="content-divider"></div>
+                        <% }) %>
+                    </div>
+                <% } %>
+            </div>
+
+            <div class="content-container flex-container">
+                <h2>My RSVPs</h2>
+                <div class="content-header flex-container">
+                    <h3>Title</h3>
+                    <h3>Going?</h3>
+                </div>
+                <div class="content-divider"></div>
+                <% const RSVPsExist = typeof(RSVPs) === "object" %>
+                <% if(!RSVPsExist || RSVPs.length <= 0){ %>
+                    <p>There are no RSVPs to display</p>
+                <% }else{ %>
+                    <div class="event-list flex-container">
+                        <% RSVPs.forEach(RSVP => { %>
+                            <div class="event-list-item flex-container">
+                                <p><a href="/events/<%= RSVP.event._id %>"><%= RSVP.event.title %></a></p>
+                                <div class="flex-container">
+                                    <p class="nav-breaker"></p>
+                                    <p><%= RSVP.status %></p>
+                                </div>
+                            </div>
+                            <div class="content-divider"></div>
+                        <% }) %>
+                    </div>
+                <% } %>
+            </div>
+
+         </main>
+
+        <%- include('../partials/footer.ejs') %>
+
+    </body>
+
+</html>

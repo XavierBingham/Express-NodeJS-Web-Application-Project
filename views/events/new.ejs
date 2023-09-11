@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <!--Site Headings-->
+    <head>
+
+        <meta charset="utf-8">
+        <title>Music Events - New Event</title>
+        
+        <!--CSS Files-->
+        <link rel="stylesheet" type="text/css" href="/CSS/sharedStyles.css">
+        <link rel="stylesheet" type="text/css" href="/CSS/newEvent.css">
+
+        <!--JS Files-->
+        <script src="/JS/newEvent.js"></script>
+
+    </head>
+
+    <!--Site Content-->
+    <body class="no-animations">
+
+        <%- include('../partials/header.ejs') %>
+        <% const EventExists = typeof(Event) === 'object' %>
+
+        <!--Main Content-->
+        <main class="flex-container"> 
+            <div id="content-container" class="flex-container">
+                <% if(Method === "POST"){ %>
+                    <form action="/events" method="POST" enctype="multipart/form-data" class="flex-container">
+                <% } else { %>
+                    <form action="/events/<%= Event.id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="flex-container">
+                <% } %>
+                
+                    <!--Category-->
+                    <div>
+                        <label for="category">Category</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select an option...</option>
+                            <option value="Guitar" <% if(EventExists && Event.category === "Guitar"){ %> selected <% } %>>Guitar</option>
+                            <option value="Drums" <% if(EventExists && Event.category === "Drums"){ %> selected <% } %>>Drums</option>
+                            <option value="Bass" <% if(EventExists && Event.category === "Bass"){ %> selected <% } %>>Bass</option>
+                            <option value="Vocal" <% if(EventExists && Event.category === "Vocal"){ %> selected <% } %>>Vocal</option>
+                            <option value="Bongos" <% if(EventExists && Event.category === "Bongos"){ %> selected <% } %>>Bongos</option>
+                        </select><br>
+                    </div>
+
+                    <!--Title-->
+                    <div>
+                        <label for="title">Title</label>
+                        <input id="title" name="title" type="text" placeholder="Title" <% if(EventExists){ %> value="<%= Event.title %>" <% } %> required>
+                    </div>
+
+                    <!--Details-->
+                    <div>
+                        <label for="details">Details</label>
+                        <input id="details" name="details" type="text" placeholder="Description" maxlength="300" <% if(EventExists){ %> value="<%= Event.details %>" <% } %>  required>
+                    </div>
+
+                    <!--Location-->
+                    <div>
+                        <label for="where">Where</label>
+                        <input id="where" name="where" type="text" placeholder="Location" <% if(EventExists){ %> value="<%= Event.where %>" <% } %>  required>
+                    </div>
+
+                    <!--Start Date-->
+                    <div>
+                        <label for="start">Start</label>
+                        <input id="start" name="start" type="datetime-local" <% if(EventExists){ %> value="<%= Event.start.toISOString().slice(0, -5) %>" <% } %> required>
+                    </div>
+                    
+                    <!--End Date-->
+                    <div>
+                        <label for="end">End</label>
+                        <input id="end" name="end" type="datetime-local" <% if(EventExists){ %> value="<%= Event.end.toISOString().slice(0, -5) %>" <% } %> required>
+                    </div>
+
+                    <!--Image-->
+                    <div>
+                        <label for="image">Image</label>
+                        <input id="image" name="image" type="file" accept="image/x-png,image/jpeg,image/gif" <% if(!EventExists){ %> required <% } %>>
+                    </div>
+                    
+                    <div class="content-divider"></div>
+
+                    <!--Submit-->
+                    <div class="flex-container">
+                        <input id="submit" type="submit">
+                    </div>
+
+                </form>
+            </div>
+        </main>
+
+        <%- include('../partials/footer.ejs') %>
+
+    </body>
+
+</html>

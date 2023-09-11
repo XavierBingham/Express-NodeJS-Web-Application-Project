@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <!--Site Headings-->
+    <head>
+
+        <meta charset="utf-8">
+        <title>Music Events - Events</title>
+        
+        <!--CSS Files-->
+        <link rel="stylesheet" type="text/css" href="/CSS/sharedStyles.css">
+        <link rel="stylesheet" type="text/css" href="/CSS/events.css">
+
+        <!--JS Files-->
+        <script src="/JS/events.js"></script>
+
+    </head>
+
+    <!--Site Content-->
+    <body class="no-animations">
+
+        <%- include('../partials/header.ejs') %>
+
+        <!--Main Content-->
+        <main class="flex-container">
+
+            <!--Event Category Navigation-->
+            <div id="event-navigation" class="flex-container">
+                <% let CategorySelected = false; %>
+                <% EventCategories.forEach(Category => { %>
+                    <button class="flex-container" value="<%= Category %>" <% if(!CategorySelected){ CategorySelected = true %> selected <% } %>><img src="/SiteImages/Instruments/<%= Category %>.png"  alt="Image of an instrument."><%= Category %></button>
+                <% }); %>
+                <% if(!CategorySelected){ %>
+                    <h4 id="no-events-label">There are no events to display.</h4>
+                <% } %>
+            </div>
+
+            <div class="content-divider"></div>
+
+            <% EventCategories.forEach(Category => { %>
+                <div id=<%= Category %> class="events-container flex-container hide">
+                    <% Events.forEach(Event => { %>
+                        <% if(Event.category !== Category){return;} %>
+                        <a href="/events/<%= Event._id %>" class="event-list-item"><div class="flex-container">
+                            <div class="list-left-content flex-container">
+                                <img src="/SiteImages/Instruments/<%= Category %>.png" alt="Image of an instrument.">
+                                <h3><%= Event.title %></h3>
+                                <div class="nav-breaker"></div>
+                            </div>
+                            <div class="list-right-content">
+                                <p>Hosted by <%= Event.host.firstName %> <%= Event.host.lastName %></p>
+                            </div>
+                        </div></a>
+                    <% }) %>
+                </div>
+            <% }); %>
+            
+        </main>
+
+        <%- include('../partials/footer.ejs') %>
+
+    </body>
+
+</html>

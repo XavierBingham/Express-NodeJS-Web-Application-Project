@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <!--Site Headings-->
+    <head>
+        <meta charset="utf-8">
+        <title>Music Events - Event</title>
+        
+        <!--CSS Files-->
+        <link rel="stylesheet" type="text/css" href="/CSS/sharedStyles.css">
+        <link rel="stylesheet" type="text/css" href="/CSS/event.css">
+
+        <!--JS Files-->
+        <script src="/JS/event.js"></script>
+
+    </head>
+
+    <!--Site Content-->
+    <body class="no-animations">
+
+        <%- include('../partials/header.ejs') %>
+
+        <!--Main Content-->
+        <main class="flex-container"> 
+            <div id="content-container" class="flex-container">
+                <div id="top-content" class="flex-container">
+                    <h2><b><%= Event.title %></b></h2>
+                    <% //if(user != null && user.id != null && user.id != Event.host._id){ %>
+                    <form method="POST" action="/events/<%= EventId %>/rsvp" class="flex-container">
+                        <label>Going?</label>
+                        <input type="submit" id="opt-yes" name="status" class="flex-container" value="YES">
+                        <input type="submit" id="opt-no" name="status" class="flex-container" value="NO">
+                        <input type="submit" id="opt-maybe" name="status" class="flex-container" value="MAYBE">
+                    </form>
+                    <% //} %>
+                </div>
+                <div class="content-divider"></div>
+                <div id="bottom-content" class="flex-container">
+                    <div id="left-content" class="flex-container">
+                        <img id="picture" src="/SiteImages/EventImages/<%= Event.image %>" alt="Picture of the event location.">
+                    </div>
+                    <div id="right-content" class="flex-container">
+                        <h3><b>Host:</b></h3>
+                        <p id="host"><%= Event.host.firstName %> <%= Event.host.lastName %></p><br>
+                        <h3><b>Date and Time:</b></h3>
+                        <p id="date">From: <%= Event.start %><br>To: <%= Event.end %></p><br>
+                        <h3><b>Location:</b></h3>
+                        <p id="location"><%= Event.where %></p><br>
+                        <h3><b>Details:</b></h3>
+                        <p id="details"><%= Event.details %></p><br>
+                        <h3><b>Reservations:</b></h3>
+                        <p id="reservations"><%= RSVPCount %></p><br>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <%- include('../partials/footer.ejs') %>
+
+    </body>
+
+</html>

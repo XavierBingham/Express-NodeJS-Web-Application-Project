@@ -1,0 +1,48 @@
+<!--Header Navigation-->
+<header>
+    <div id="header-container" class="flex-container">
+
+         <!--Account Navigation-->
+         <div id="header-top-container" class="flex-container">
+            <a href="/"><img id="header-logo" src="/SiteImages/Logo.PNG" alt="Logo of the website."></a>
+            <nav class="row-nav flex-container">
+                <% if(user){ %>
+                    <a href="/events/new" class="unanimated">New Event</a>
+                    <div class="nav-breaker"></div>
+                    <a href="/users/profile" class="unanimated"><%=user.firstName %>'s Profile</a>
+                    <div class="nav-breaker"></div>
+                    <a href="/users/logout" class="unanimated">Logout</a>
+                <% } else { %>
+                    <a href="/users/new" class="unanimated">Sign Up</a>
+                    <div class="nav-breaker"></div>
+                    <a href="/users/login" class="unanimated">Login</a>
+                <% } %>
+            </nav>
+        </div>
+        <div class="content-divider"></div>
+
+        <!--Website Navigation-->
+        <div id="header-bottom-container" class="flex-container">
+            <nav class="row-nav flex-container">
+                <a href="/events" class="unanimated">Events</a>
+            </nav>
+        </div>
+
+    </div>
+</header>
+
+<% if (successMessages.length > 0) {
+    successMessages.forEach(message => { %>
+        <div class="flash flash-success flex-container">
+            <%= message %>
+        </div>
+    <% });
+} %>
+
+<% if (errorMessages.length > 0) {
+    errorMessages.forEach(message => { %>
+        <div class="flash flash-error flex-container">
+            <%= message %>
+        </div>
+    <% });
+} %>
